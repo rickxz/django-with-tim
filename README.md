@@ -50,9 +50,9 @@ $ python manage.py shell | abre o shell para adicionar algumas coisas ao banco d
 $ python manage.py shell
 $ from main.models import ToDoList, Item
 $ t = ToDoList.objects
-$ t.filter(name__startswith=<i>'substring'</i>) | filtra um objeto que começa com uma determinada substring
-$ t.filter(name__endswith=<i>'substring'</i>) | filtra um objeto que termina com uma determinada substring
-$ delete_object = t.get(name=<i>'string'</i>) | pega o objeto que será deletado
+$ t.filter(name__startswith='substring') | filtra um objeto que começa com uma determinada substring
+$ t.filter(name__endswith='substring') | filtra um objeto que termina com uma determinada substring
+$ delete_object = t.get(name='string') | pega o objeto que será deletado
 $ delete_object.delete()
 ```
 
