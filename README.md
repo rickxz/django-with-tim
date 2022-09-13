@@ -72,3 +72,14 @@ $ python manage.py createsuperuser | cria uma conta de admin na página de dashb
 - criar templates/main/ dentro da pasta da aplicação
 - herança de templates: permite a construção de um template "básico", que possui elementos comuns que serão exibidos em toda página
 - bloco: permite a substituição de partes específicas de um template
+
+#
+
+## Parte 5: Formulários Simples
+- criar objeto form em templates/main/, que gerará o html automaticamente na página de acordo com os atributos da classe
+- layouts padrões para forms (.as_table, .as_div, .as_ul, .as_p)
+- necessário criar um {% csrf_token %} para cada formulário
+- tratar as requisições get e posts nas views por meio do parâmetro response
+- .is_valid → checa automaticamente se os inputs definidos têm informações válidas
+- .cleaned_data → possibilita acessar os atributos a partir da descriptografia dos dados da requisição post
+- HttpResponseRedirect → redireciona o usuário para outra página 
