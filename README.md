@@ -80,6 +80,29 @@ $ python manage.py createsuperuser | cria uma conta de admin na página de dashb
 - layouts padrões para forms (.as_table, .as_div, .as_ul, .as_p)
 - necessário criar um {% csrf_token %} para cada formulário
 - tratar as requisições get e posts nas views por meio do parâmetro response
+- render(request object, template, dictionary) → HttpResponse
 - .is_valid → checa automaticamente se os inputs definidos têm informações válidas
 - .cleaned_data → possibilita acessar os atributos a partir da descriptografia dos dados da requisição post
 - HttpResponseRedirect → redireciona o usuário para outra página 
+
+#
+
+## Parte 9: User Registration & Sign Up Page
+- criar nova aplicação no projeto que será responsável pelas páginas de usuário
+- importante: não se esquecer de adicionar a nova aplicação no arquivo settings.py
+```python
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+# formulário de criação de usuário já prontos
+```
+
+
+- para adicionar outros inputs no formulário já pronto, cria-se uma classe que herda de UserCreationForm
+- classe Meta: permite a modificação de alguns atributos da classe mãe
+```python
+model = User
+fields = ["username", "email", "password1", "password2"] # especifica a ordem dos inputs na página
+```
+
+
+- crispy forms: aplicação que ajuda a manipular os formulários django
