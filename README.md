@@ -33,6 +33,8 @@ $ python manage.py makemigrations (nome da aplicação) | coloca os arquivos que
 $ python manage.py migrate
 $ python manage.py shell | abre o shell para adicionar algumas coisas ao banco de dados
 ```
+
+- migrations: maneira de aplicar as mudanças realizadas no arquivo "models.py" ao banco de dados
 #
 ```shell
 
@@ -96,7 +98,6 @@ from django.contrib.auth.forms import UserCreationForm
 # formulário de criação de usuário já prontos
 ```
 
-
 - para adicionar outros inputs no formulário já pronto, cria-se uma classe que herda de UserCreationForm
 - classe Meta: permite a modificação de alguns atributos da classe mãe
 ```python
@@ -104,5 +105,17 @@ model = User
 fields = ["username", "email", "password1", "password2"] # especifica a ordem dos inputs na página
 ```
 
-
 - crispy forms: aplicação que ajuda a manipular os formulários django
+
+#
+
+## Parte 10: Login, logout e autenticação de usuário 
+
+- 'django.contrib.auth': aplicação que consegue autenticar usuários
+- definir LOGIN_REDIRECT_URL e LOGOUT_REDIRECT_URL para a página que desejar
+
+#
+
+## Parte 11: Páginas específicas de usuário
+
+- em caso de problemas com as migrations, excluir todos os arquivos das pastas migrations exceto o "init.py"

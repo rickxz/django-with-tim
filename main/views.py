@@ -7,24 +7,25 @@ from .forms import CreateNewList
 
 def index(response, id):
     ls = ToDoList.objects.get(id=id)
-    if response.method == "POST":
-        print(response.POST)
-        if response.POST.get("btnSave"):
-            for item in ls.item_set.all():
-                if response.POST.get("c" + str(item.id)) == "clicked":
-                    item.completed = True
+    if ls in response.user.todolist.all():
+        if response.method == "POST":
+            print(response.POST)
+            if response.POST.get("btnSave"):
+                for item in ls.item_set.all():
+                    if response.POST.get("c" + str(item.id)) == "clicked":
+                        item.completed = True
+                    else:
+                        item.completed = False
+                    item.save()
+            elif response.POST.get("btnNewItem"):
+                txt = response.POST.get("txtItem")
+                if len(txt) > 2:
+                    ls.item_set.create(text=txt, completed=False)
                 else:
-                    item.completed = False
-                item.save()
-        elif response.POST.get("btnNewItem"):
-            txt = response.POST.get("txtItem")
-            if len(txt) > 2:
-                ls.item_set.create(text=txt, completed=False)
-            else:
-                print('Input inválido')
-
-
-    return render(response, "main/list.html", {"ls": ls})
+                    print('Input inválido')
+        return render(response, "main/list.html", {"ls": ls})
+    return render(response, "main/view.html", {})
+    
 
 
 def home(response):
@@ -38,8 +39,12 @@ def create(response):
             n = form.cleaned_data["name"]
             t = ToDoList(name=n)
             t.save()
+            response.user.todolist.add(t)
 
         return HttpResponseRedirect("/%i" %t.id)
     else:
         form = CreateNewList()
     return render(response, "main/create.html", {"form": form})
+
+def view(response):
+    return render(response, "main/view.html", {})
